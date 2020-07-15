@@ -14,4 +14,5 @@ func main() {
 	fmt.Println(newsfeeds)
 	newsfeeds.Add(newsfeed.Item{"Hello", "How are you ", "Cool"})
 	fmt.Println(newsfeeds)
+	
 }
