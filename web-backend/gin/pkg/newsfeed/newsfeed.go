@@ -11,7 +11,9 @@ type Repo struct {
 }
 
 func New() *Repo {
-	return &Repo{}
+	return &Repo{
+		Items: []Item{},
+	}
 }
 
 func (r *Repo) Add(item Item) {
@@ -22,6 +24,6 @@ func (r *Repo) GetAll() []Item {
 	return r.Items
 }
 
-func (r *Repo) Update(item Item){
-	
+func (r *Repo) Update(item Item) {
+
 }
