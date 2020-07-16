@@ -9,8 +9,8 @@ import (
 
 func DeletePost(feeder newsfeed.Deleter) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		requestBody := newsFeedPostRequest{}
-		c.Bind(&requestBody)
+		requestBody := newsfeed.Item{}
+		c.BindJSON(&requestBody)
 		item := newsfeed.Item{Title: requestBody.Title,
 			Post: requestBody.Post,
 			Url:  requestBody.Url,

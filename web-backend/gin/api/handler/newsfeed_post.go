@@ -7,21 +7,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type newsFeedPostRequest struct {
-	Title string `json: "title`
-	Post  string `json: "post"`
-	Url   string `json: "url`
-}
-
 func PostNewsFeed(feed newsfeed.Adder) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		requestBody := newsFeedPostRequest{}
-		c.Bind(&requestBody)
-		item := newsfeed.Item{Title: requestBody.Title,
-			Post: requestBody.Post,
-			Url:  requestBody.Url,
+		var requestBody newsfeed.Item
+		if err := c.BindJSON(&requestBody); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
 		}
-		feed.Add(item)
+		feed.Add(requestBody)
 		c.Status(http.StatusNoContent)
 	}
 }

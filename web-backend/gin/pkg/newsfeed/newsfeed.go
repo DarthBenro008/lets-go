@@ -17,9 +17,9 @@ type Updater interface {
 }
 
 type Item struct {
-	Title string `json: "title`
-	Post  string `json: "post"`
-	Url   string `json: "url`
+	Title string `json:"title" binding:"min=2,required"`
+	Post  string `json:"post" binding:"min=2"`
+	URL   string `json:"url" binding:"required,url"`
 }
 
 type Repo struct {
