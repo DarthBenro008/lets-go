@@ -8,7 +8,7 @@ type ArticleService interface {
 	InsertArticle(article entities.Article) bool
 	UpdateArticle(article entities.Article) bool
 	DeleteArticle(id int) bool
-	fetchAll() []entities.Article
+	FetchAll() []entities.Article
 }
 
 type articleService struct {
@@ -22,21 +22,21 @@ func NewService(r Repository) ArticleService {
 }
 
 func (s *articleService) InsertArticle(article entities.Article) bool {
-	if g := s.serviceRepo.checkArticleByArticle(article); g {
-		return s.serviceRepo.upsertArticle(article)
+	if g := s.serviceRepo.CheckArticleByArticle(article); g {
+		return s.serviceRepo.UpsertArticle(article)
 	}
 	return false
 }
 
 func (s *articleService) UpdateArticle(article entities.Article) bool {
-	return s.serviceRepo.updateArticle(article)
+	return s.serviceRepo.UpdateArticle(article)
 }
 func (s *articleService) DeleteArticle(id int) bool {
-	if g := s.serviceRepo.checkArticleById(id); g {
-		return s.serviceRepo.deleteArticle(id)
+	if g := s.serviceRepo.CheckArticleById(id); g {
+		return s.serviceRepo.DeleteArticle(id)
 	}
 	return false
 }
-func (s *articleService) fetchAll() []entities.Article {
-	return s.serviceRepo.fetchAllArticles()
+func (s *articleService) FetchAll() []entities.Article {
+	return s.serviceRepo.FetchAllArticles()
 }
