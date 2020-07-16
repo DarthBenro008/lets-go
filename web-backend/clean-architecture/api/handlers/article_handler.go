@@ -11,8 +11,8 @@ import (
 type delRequest struct {
 	ID int `json:"id" binding:"gte=1"`
 }
-
-func CreateArticle(article article.ArticleService) gin.HandlerFunc {
+//CreateArticle perform C of CRUD
+func CreateArticle(article article.Service) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var requestBody entities.Article
 		err := c.BindJSON(&requestBody)
@@ -24,8 +24,8 @@ func CreateArticle(article article.ArticleService) gin.HandlerFunc {
 		c.JSON(http.StatusOK, res)
 	}
 }
-
-func ReadArticles(article article.ArticleService) gin.HandlerFunc {
+//ReadArticles performs R of CRUD
+func ReadArticles(article article.Service) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var requestBody entities.Article
 		err := c.BindJSON(&requestBody)
@@ -36,8 +36,8 @@ func ReadArticles(article article.ArticleService) gin.HandlerFunc {
 		c.JSON(http.StatusOK,article.FetchAll())
 	}
 }
-
-func UpdateArticle(article article.ArticleService) gin.HandlerFunc {
+//UpdateArticle performs U of CRUD
+func UpdateArticle(article article.Service) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var requestBody entities.Article
 		err := c.BindJSON(&requestBody)
@@ -49,8 +49,8 @@ func UpdateArticle(article article.ArticleService) gin.HandlerFunc {
 	}
 	
 }
-
-func DeleteArticle(article article.ArticleService) gin.HandlerFunc {
+//DeleteArticle performs D of CRUD
+func DeleteArticle(article article.Service) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var requestBody delRequest
 		err := c.BindJSON(&requestBody)

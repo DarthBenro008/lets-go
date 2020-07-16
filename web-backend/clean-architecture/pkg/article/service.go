@@ -4,7 +4,8 @@ import (
 	"articlefeeder/pkg/entities"
 )
 
-type ArticleService interface {
+//Service holds the interface service where the main functions are performed when handlers handle.
+type Service interface {
 	InsertArticle(article entities.Article) bool
 	UpdateArticle(article entities.Article) bool
 	DeleteArticle(id int) bool
@@ -15,7 +16,8 @@ type articleService struct {
 	serviceRepo Repository
 }
 
-func NewService(r Repository) ArticleService {
+//NewService creates an instance of this service
+func NewService(r Repository) Service {
 	return &articleService{
 		serviceRepo: r,
 	}
@@ -32,7 +34,7 @@ func (s *articleService) UpdateArticle(article entities.Article) bool {
 	return s.serviceRepo.UpdateArticle(article)
 }
 func (s *articleService) DeleteArticle(id int) bool {
-	if g := s.serviceRepo.CheckArticleById(id); g {
+	if g := s.serviceRepo.CheckArticleByID(id); g {
 		return s.serviceRepo.DeleteArticle(id)
 	}
 	return false
