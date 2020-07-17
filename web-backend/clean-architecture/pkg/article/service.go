@@ -24,7 +24,7 @@ func NewService(r Repository) Service {
 }
 
 func (s *articleService) InsertArticle(article entities.Article) bool {
-	if g := s.serviceRepo.CheckArticleByArticle(article); g {
+	if g := s.serviceRepo.CheckArticleByArticle(article); !g {
 		return s.serviceRepo.UpsertArticle(article)
 	}
 	return false

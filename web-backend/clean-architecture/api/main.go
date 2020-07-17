@@ -18,5 +18,5 @@ func main() {
 	r.POST("/articles", handlers.CreateArticle(articleSvc))
 	r.PUT("/articles", handlers.UpdateArticle(articleSvc))
 	r.DELETE("/articles", handlers.DeleteArticle(articleSvc))
-	r.Run()
+	_ = r.Run()
 }

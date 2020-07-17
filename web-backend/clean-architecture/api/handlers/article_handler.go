@@ -27,12 +27,6 @@ func CreateArticle(article article.Service) gin.HandlerFunc {
 //ReadArticles performs R of CRUD
 func ReadArticles(article article.Service) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var requestBody entities.Article
-		err := c.BindJSON(&requestBody)
-		if err != nil {
-			c.JSON(http.StatusBadRequest, err)
-			return
-		}
 		c.JSON(http.StatusOK,article.FetchAll())
 	}
 }

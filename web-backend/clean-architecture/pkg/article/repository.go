@@ -50,6 +50,7 @@ func (r *articleRepo) UpdateArticle(article entities.Article) bool {
 	for index, presentArticle := range r.Articles {
 		if presentArticle.Title == article.Title {
 			r.Articles[index] = article
+			return true
 		}
 	}
 	return false
