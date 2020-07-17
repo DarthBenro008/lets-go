@@ -39,7 +39,7 @@ func GetBooks(service book.Service) gin.HandlerFunc {
 func UpdateBook(service book.Service) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var requestBody entities.Book
-		err := c.Bind(&requestBody)
+		err := c.BindJSON(&requestBody)
 		if err != nil {
 			c.JSON(http.StatusBadRequest, err)
 		}
