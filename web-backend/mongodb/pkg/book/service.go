@@ -3,6 +3,10 @@ package book
 import "newsfeeder/pkg/entities"
 
 type Service interface {
+	InsertBook(book *entities.Book) (*entities.Book, error)
+	FetchBooks() (*[]entities.Book, error)
+	UpdateBook(book *entities.Book) (*entities.Book, error)
+	RemoveBook(ID string) error
 }
 
 type service struct {
