@@ -9,6 +9,10 @@ import (
 )
 
 type Repository interface {
+	CreateBook(book *entities.Book) (*entities.Book, error)
+	ReadBook() (*[]entities.Book, error)
+	UpdateBook(book *entities.Book) (*entities.Book, error)
+	DeleteBook(ID string) error
 }
 type repository struct {
 	Collection *mongo.Collection
