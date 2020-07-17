@@ -20,15 +20,15 @@ func NewService(r Repository) Service {
 }
 
 func (s *service) InsertBook(book *entities.Book) (*entities.Book, error) {
-	return s.InsertBook(book)
+	return s.repository.CreateBook(book)
 }
 func (s *service) FetchBooks() (*[]entities.Book, error) {
-	return s.FetchBooks()
+	return s.repository.ReadBook()
 
 }
 func (s *service) UpdateBook(book *entities.Book) (*entities.Book, error) {
-	return s.UpdateBook(book)
+	return s.repository.UpdateBook(book)
 }
 func (s *service) RemoveBook(ID string) error {
-	return s.RemoveBook(ID)
+	return s.repository.DeleteBook(ID)
 }

@@ -19,10 +19,10 @@ func AddBook(service book.Service) gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, err)
 		}
 		res, dberr := service.InsertBook(&requestBody)
-		if res != nil {
-			c.JSON(http.StatusOK, res)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, dberr)
 		}
-		c.JSON(http.StatusInternalServerError, dberr)
+		c.JSON(http.StatusOK, res)
 	}
 }
 
@@ -44,10 +44,11 @@ func UpdateBook(service book.Service) gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, err)
 		}
 		res, dberr := service.UpdateBook(&requestBody)
-		if res != nil {
-			c.JSON(http.StatusOK, res)
+		if dberr != nil {
+			c.JSON(http.StatusInternalServerError, dberr)
 		}
-		c.JSON(http.StatusInternalServerError, dberr)
+		c.JSON(http.StatusOK, res)
+
 	}
 }
 
